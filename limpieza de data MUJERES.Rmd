@@ -1,0 +1,69 @@
+INSTALAR LIBRERÍA: 
+
+```{r}
+install.packages("dplyr")
+library(dplyr)
+```
+
+```{r}
+install.packages("readr")
+library(readr)
+```
+
+
+```{r}
+install.packages("stringr")
+library(stringr)
+```
+
+
+LIMPIEZA DE DATA TAZA BRUTA DE MATRÍCULA EN EL NIVEL SUPERIOR POR SEXO Y AÑO 
+
+INSPECCIONAR LA DATA 
+
+```{r}
+str(mujeres)
+```
+
+```{r}
+summary(mujeres)
+```
+
+```{r}
+names(mujeres)
+```
+
+borrar las columnas sin info relevante 
+
+```{r}
+mujeres[,c(2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40)] = NULL
+```
+
+borrar las columnas de los años que no voy a trabajar 
+
+```{r}
+mujeres[,c(2,3,4,5,7,8,9,11,12,13,15,16,18,19,20)] = NULL
+```
+
+he decidido trabajar en base a estos 4 años 
+
+```{r}
+names(mujeres) = c("Pais", "2004", "2008", "2012", "2015")
+
+```
+
+```{r}
+str(mujeres)
+```
+
+eliminar de la variable pais lo que está entre parentesis 
+
+```{r}
+mujeres$Pais=str_split(mujeres$Pais, pattern = '[(]', simplify = T)[,1]
+
+```
+
+```{r}
+mujeres=na.omit(mujeres)
+```
+
